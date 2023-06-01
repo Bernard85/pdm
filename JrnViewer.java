@@ -48,18 +48,22 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
+ 
 import p.d.m.HUB;
 
 public class JrnViewer extends Composite {
 	public static JexlEngine jexl = new JexlBuilder().cache(512).strict(true).silent(false).create();
-	JexlExpression isDeleteRow = jexl.createExpression("bean7.joentt.equals('DL')");
+	JexlExpression isPostUpdateRow = jexl.createExpression("joentt.equals('UP')");
+	JexlExpression isDeleteRow = jexl.createExpression("joentt.equals('DL')");
+	JexlExpression joctrr = jexl.createExpression("joctrr");
+
+
 	JexlContext values = new MapContext();
 
 	IMessageBox messageBox;
 	IModifierNotifier modifierNotifier;
 
-	final int rowHeight = 20,headerHeight=rowHeight*2,margin = 5;
+	final int rowHeight = 20,headerHeight=(int) Math.round(rowHeight*1.5) ,margin = 5;
 	ScrollBar hb,vb;
 	int rowMax=0,colMax=0,col1,col9,row1,row9;
 	int columnOnMouseDown, positionOnMouseDown, positionCurrent;
@@ -137,10 +141,10 @@ public class JrnViewer extends Composite {
 			BufferedReader	br = new BufferedReader(new FileReader(fileName));
 			String line;
 			while ((line = br.readLine()) != null) {
-			
-				///List<Cell> cells = getCells(line);
+
+				///List<Cell> cells = loadCells(line);
 				rows.add(new Row(line));
-				
+
 			}
 			br.close();
 		} catch (Throwable e) {
@@ -208,30 +212,55 @@ public class JrnViewer extends Composite {
 		addPaintListener(new PaintListener() {
 			@Override
 			public void paintControl(PaintEvent e) {
+
+				List <Cell> cells[]=new ArrayList[2];
+				String groups[]=new String[] {"",""};
+
+				Row row = null;
+				
 				Image image = new Image(Display.getCurrent(), e.width, rowHeight); 
 				GC gc = new GC(image);
 
-				int rowX = row1;
 				iRows = rows.listIterator(row1);
+			
+				int rowX=row1-1;
+				if (rowX>=0) {
+					iRows = rows.listIterator(row1-1);
+					row = iRows.next();
+					loadCells(row,cells,groups); 
+				}
+				else {
+					iRows = rows.listIterator(row1);
+					cells[0]  = null;
+				}
+						
+				while (rowX<=row9) {
 
+					row = (iRows.hasNext())?iRows.next():null;
+					
+					loadCells(row, cells, groups);
 
-				while ((rowX<=row9) && (iRows.hasNext())) {
-					Row row = (Row) iRows.next();
-					int colX=col1;
-					List <Cell> cells = getCells((String)row.ujo); 
-					Iterator <Cell> iCells= cells.listIterator(col1);
-					iColumns= columns.listIterator(col1);
-					while (colX<=col9) {
-						Column column = iColumns.next();
-						Cell cell = iCells.next();
-						String string = cell.value;
-						Point requiredSize = e.gc.textExtent(string);
-						gc.fillRectangle(image.getBounds());
-						gc.drawString(string, 10, (rowHeight-requiredSize.y)/2);
-						e.gc.drawImage(image, column.leftBorder-hb.getSelection()-1, (rowX-row1)*rowHeight+headerHeight);
+					if (rowX>=row1) {
+						int colX=col1;
+					
+						Iterator <Cell> iCells0= cells[0].listIterator(col1);
+						iColumns= columns.listIterator(col1);
 
-						colX++;
+						while (colX<=col9) {
+							Column column = iColumns.next();
+							Cell cell0 = iCells0.next();
+							String string = cell0.value;
+							Point requiredSize = e.gc.textExtent(string);
+							gc.setBackground(cell0.backGround);
+							gc.fillRectangle(image.getBounds());
+							gc.drawString(string, 3, (rowHeight-requiredSize.y)/2);
+							e.gc.drawImage(image, column.leftBorder-hb.getSelection()-1, headerHeight+(rowX-row1)*rowHeight);
+							colX++;
+						}
 					}
+					if (!groups[0].equals(groups[1])) e.gc.drawLine(e.x, headerHeight-1+(rowX-row1+1)*rowHeight, e.x+e.width, headerHeight-1+(rowX-row1+1)*rowHeight);
+					cells[0]=cells[1];
+					groups[0]=groups[1];
 					rowX++;
 				}
 				image.dispose();
@@ -276,9 +305,14 @@ public class JrnViewer extends Composite {
 			}
 		});
 	}
-	private List<Cell> getCells(String line){
+	private void loadCells(Row row, List<Cell>[] cells, String[] groups){
+		groups[1]="";
+		if (row==null) return;
+		
+		String line=(String)row.ujo;
 		List<String> strings = Arrays.asList(line.split("\t"));
-		ListIterator<String> iStrings = strings.listIterator(); 
+		ListIterator<String> iStrings = strings.listIterator();
+		ListIterator<Cell> iCells0 = (cells[0]==null)?null:cells[0].listIterator();
 		// load map for each field
 		iFields = fields.listIterator(); 
 		while (iFields.hasNext()) {
@@ -286,14 +320,32 @@ public class JrnViewer extends Composite {
 			String string=iStrings.next();
 			values.set(field.id, string);
 		}
+		// load group
+		groups[1]=(String) joctrr.evaluate(values);
+		
 		// load each cell 
-		List<Cell>cells=new ArrayList<Cell>();
+		cells[1]=new ArrayList<Cell>();
+
 		iColumns = columns.listIterator();
+
 		while (iColumns.hasNext()) {
 			Column column = iColumns.next();
-			cells.add(new Cell(values, column.expression));
+			Cell cell; 
+			cells[1].add(cell=new Cell(values, column.expression));
+
+			if ((boolean)isDeleteRow.evaluate(values)) {
+				cell.backGround = HUB.COLOR_RED;
+			}
+			else if ((boolean)isPostUpdateRow.evaluate(values)) {
+				if (cells[0]!=null && cells[1]!=null) {
+					Cell cell0=iCells0.next();
+					if (cell0.value!=cell.value) {
+						cell0.backGround = HUB.COLOR_PINK;
+						cell.backGround = HUB.COLOR_GREEN;
+					}
+				}
+			}
 		}
-		return cells;
 	}
 	private void setUpMouseListeners() {
 		addListener(SWT.MouseDown, new Listener() {
