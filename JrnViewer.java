@@ -48,7 +48,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
+ 
 import p.d.m.HUB;
 
 public class JrnViewer extends Composite {
@@ -57,13 +57,12 @@ public class JrnViewer extends Composite {
 	JexlExpression isDeleteRow = jexl.createExpression("joentt.equals('DL')");
 	JexlExpression joctrr = jexl.createExpression("joctrr");
 
-
 	JexlContext values = new MapContext();
 
 	IMessageBox messageBox;
 	IModifierNotifier modifierNotifier;
 
-	final int rowHeight = 20,headerHeight=(int) Math.round(rowHeight*1.5) ,margin = 5;
+	final int rowHeight = 19,headerHeight=(int) Math.round(rowHeight*1.5) ,margin = 5;
 	ScrollBar hb,vb;
 	int rowMax=0,colMax=0,col1,col9,row1,row9;
 	int columnOnMouseDown, positionOnMouseDown, positionCurrent;
@@ -117,9 +116,7 @@ public class JrnViewer extends Composite {
 	}
 	public void setFields(String fileName) {
 		try {
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document dFormat = db.parse(new File(fileName));
+			Document dFormat = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(fileName));
 
 			Element eFormat=dFormat.getDocumentElement();
 
@@ -142,7 +139,6 @@ public class JrnViewer extends Composite {
 			String line;
 			while ((line = br.readLine()) != null) {
 
-				///List<Cell> cells = loadCells(line);
 				rows.add(new Row(line));
 
 			}
@@ -165,8 +161,8 @@ public class JrnViewer extends Composite {
 		hb.addListener(SWT.Selection, new Listener() {
 			@Override
 			public void handleEvent(Event e) {
-				col1=Column.getColumnAtPos(columns, hb.getSelection());
-				col9=Column.getColumnAtPos(columns, hb.getSelection()+getClientArea().width);
+				col1=Column.getColumnAtPos(columns, xX(0));
+				col9=Column.getColumnAtPos(columns, xX(getClientArea().width));
 				messageBox.send("scroll position:"+hb.getSelection()+" - first/last column:"+col1+"/"+col9);
 				redraw();
 			}
@@ -254,7 +250,7 @@ public class JrnViewer extends Composite {
 							gc.setBackground(cell0.backGround);
 							gc.fillRectangle(image.getBounds());
 							gc.drawString(string, 3, (rowHeight-requiredSize.y)/2);
-							e.gc.drawImage(image, column.leftBorder-hb.getSelection()-1, headerHeight+(rowX-row1)*rowHeight);
+							e.gc.drawImage(image, Xx(column.leftBorder)-1, headerHeight+(rowX-row1)*rowHeight);
 							colX++;
 						}
 					}
@@ -274,11 +270,11 @@ public class JrnViewer extends Composite {
 				for (int col=col1;col<=col9;col++)
 				{
 					Column column = iColumns.next();
-					e.gc.drawLine(column.rightBorder-hb.getSelection()-1, 0, column.rightBorder-hb.getSelection()-1, headerHeight+(row9-row1+1)*rowHeight);
+					e.gc.drawLine(Xx(column.rightBorder)-1, 0, Xx(column.rightBorder)-1, headerHeight+(row9-row1+1)*rowHeight);
 					String string = column.text;
 					Point requiredSize = e.gc.textExtent(string);
-					e.gc.drawString(string, column.leftBorder-hb.getSelection()+margin, (headerHeight-requiredSize.y)/2);
-					e.gc.drawLine(column.leftBorder-hb.getSelection(),headerHeight-1,column.rightBorder-hb.getSelection(),headerHeight-1);
+					e.gc.drawString(string, Xx(column.leftBorder)+margin, (headerHeight-requiredSize.y)/2);
+					e.gc.drawLine(Xx(column.leftBorder),headerHeight-1,Xx(column.rightBorder),headerHeight-1);
 				}
 
 				font.dispose();
@@ -296,8 +292,8 @@ public class JrnViewer extends Composite {
 					iColumns= columns.listIterator(selectedCell.x);
 					Column column=iColumns.next();
 					e.gc.drawRectangle(
-							column.leftBorder-hb.getSelection()-1
-							,headerHeight+(selectedCell.y-vb.getSelection())*rowHeight							
+							Xx(column.leftBorder)-1
+							,Yy(selectedCell.y)/*headerHeight+(selectedCell.y-vb.getSelection())*rowHeight*/							
 							,column.width-1
 							,rowHeight-1
 							);
@@ -350,7 +346,7 @@ public class JrnViewer extends Composite {
 	private void setUpMouseListeners() {
 		addListener(SWT.MouseDown, new Listener() {
 			public void handleEvent(Event e) {
-				int ap=e.x+hb.getSelection();
+				int ap=xX(e.x);
 				if ((e.y<headerHeight) && (columnOnMouseDown=Column.isOnBorder(columns, ap))>-1) {
 					positionOnMouseDown=e.x;
 					positionCurrent=e.x;
@@ -362,9 +358,8 @@ public class JrnViewer extends Composite {
 					redraw();
 				}
 				else if (e.y>headerHeight) {
-					selectedCell.y=vb.getSelection()+(e.y-headerHeight)/rowHeight;
-
-					selectedCell.x=Column.getColumnAtPos(columns,e.x+hb.getSelection());
+					selectedCell.y=yY(e.y);/*vb.getSelection()+(e.y-headerHeight)/rowHeight*/
+					selectedCell.x=Column.getColumnAtPos(columns,xX(e.x));
 					messageBox.send("selected cell: "+selectedCell.y+"/"+selectedCell.x);
 				}
 				else {
@@ -375,7 +370,7 @@ public class JrnViewer extends Composite {
 
 		addMouseMoveListener(new MouseMoveListener() {
 			public void mouseMove(MouseEvent e) {
-				int ap=e.x+hb.getSelection();
+				int ap=xX(e.x);
 				if (((e.y<headerHeight) && (Column.isOnBorder(columns,ap)>-1)) || (resize)) {
 					Cursor cursor = new Cursor(Display.getCurrent(), SWT.CURSOR_SIZEWE);
 					setCursor(cursor);
@@ -399,8 +394,8 @@ public class JrnViewer extends Composite {
 					column.width+=delta;
 					hb.setMaximum(hb.getMaximum()+delta);
 					Column.computeBorders(columns);
-					col1=Column.getColumnAtPos(columns, hb.getSelection());
-					col9=Column.getColumnAtPos(columns, hb.getSelection()+getClientArea().width);
+					col1=Column.getColumnAtPos(columns, xX(0));
+					col9=Column.getColumnAtPos(columns, xX(getClientArea().width));
 				}
 				positionOnMouseDown=-1;
 				resize=false;
@@ -417,6 +412,7 @@ public class JrnViewer extends Composite {
 		});
 
 	}
+
 	private void setUpKeyListener() {
 		addKeyListener(new KeyAdapter() {
 
@@ -444,8 +440,8 @@ public class JrnViewer extends Composite {
 				iColumns= columns.listIterator(columns.size()-1);
 				Column column = iColumns.next();
 				hb.setMaximum(1+column.rightBorder-getClientArea().width);
-				col1=Column.getColumnAtPos(columns, hb.getSelection());
-				col9=Column.getColumnAtPos(columns, hb.getSelection()+getClientArea().width);
+				col1=Column.getColumnAtPos(columns, xX(0));
+				col9=Column.getColumnAtPos(columns, xX(getClientArea().width));
 				messageBox.send("first/last column: "+col1+'/'+col9);
 
 				vb.setMaximum(1+rowMax-(getClientArea().height-headerHeight)/rowHeight);
@@ -490,6 +486,19 @@ public class JrnViewer extends Composite {
 			System.out.println("save failure");
 		}	
 	}
+	protected int xX(int x) {
+		return hb.getSelection()+x;
+	}
+	protected int Xx(int X) {
+		return X-hb.getSelection();
+	}
+	protected int Yy(int Y) {
+		return headerHeight+(Y-vb.getSelection())*rowHeight;
+	}
+	protected int yY(int y) {
+		return (y-headerHeight)/rowHeight+vb.getSelection();
+	}
+
 }
 
 
