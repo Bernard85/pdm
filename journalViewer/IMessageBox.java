@@ -1,4 +1,4 @@
-package p.d.m.journalViewer;
+package journalViewer;
 
 public interface IMessageBox {
 	public void send(String message);

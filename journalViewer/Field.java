@@ -1,4 +1,4 @@
-package p.d.m.journalViewer;
+package journalViewer;
 
 import org.w3c.dom.Element;
 

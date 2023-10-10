@@ -1,4 +1,4 @@
-package p.d.m.journalViewer;
+package journalViewer;
 
 public class Row {
 	public Object ujo;

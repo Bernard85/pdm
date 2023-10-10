@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
+  <tags>shellMaximized</tags>
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.window.main" label="pdm workbench eclipse " width="500" height="400">
+    <tags>shellMaximized</tags>
+    <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.partsashcontainer.sample" horizontal="true">
+      <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="projectStack" containerData="15">
+        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.part.sample" contributionURI="bundleclass://p.d.m/studies.Studies" label="Study Explorer" iconURI="platform:/plugin/p.d.m/icons/project_explorer.png">
+          <handlers xmi:id="_6oIAABjLEe64DKyAf1dAhA" elementId="p.d.m.handler.open" contributionURI="bundleclass://p.d.m/studies.handlers.OpenIt" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+          <handlers xmi:id="_ld7BkBkXEe6nzP-BvskRDQ" elementId="p.d.m.handler.close" contributionURI="bundleclass://p.d.m/studies.handlers.CloseIt" command="_Hue9MBkXEe6nzP-BvskRDQ"/>
+          <menus xsi:type="menu:PopupMenu" xmi:id="_WnzMYBjLEe64DKyAf1dAhA" elementId="p.d.m.studiesmenu">
+            <children xsi:type="menu:HandledMenuItem" xmi:id="_YnM4UBjLEe64DKyAf1dAhA" elementId="p.d.m.handledmenuitem.open" label="Open" mnemonics="Open it" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+            <children xsi:type="menu:HandledMenuItem" xmi:id="_BLVZQBkXEe6nzP-BvskRDQ" elementId="p.d.m.handledmenuitem.close" label="Close" mnemonics="Close it" command="_Hue9MBkXEe6nzP-BvskRDQ"/>
+          </menus>
+        </children>
+      </children>
+      <children xsi:type="basic:PartStack" xmi:id="_BCv-4NtnEe2NWMGxzQ-mrQ" elementId="detailStack1" containerData="85"/>
+    </children>
+    <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">
+      <children xsi:type="menu:Menu" xmi:id="_6wlLisgZEeSyMNYR5xypkQ" elementId="file" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.handleditem.file.open" label="Open" iconURI="platform:/plugin/p.d.m/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjMgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.handleditem.save" label="Save" iconURI="platform:/plugin/p.d.m/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.handleditem.quit" label="Quit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
+      </children>
+    </mainMenu>
+  </children>
+  <children xsi:type="basic:Window" xmi:id="_-TrdQF7_Ee6_H5s8cMJvPA" elementId="window2" visible="false" label="window2">
+    <children xsi:type="basic:PartStack" xmi:id="_hqQJQF8AEe6_H5s8cMJvPA" elementId="detailStack2"/>
+  </children>
+  <handlers xmi:id="_RvlaIGFiEe64erBWpoUBlg" elementId="handler.insert" contributionURI="bundleclass://p.d.m/sourceViewer.handlers.Insert" command="_RZ8MQGCcEe6mFfD58ubZBg"/>
+  <handlers xmi:id="_Uzoc0FGyEe6pMPet8_A_bQ" elementId="p.d.m.handler.saveCommand" contributionURI="bundleclass://p.d.m/studies.handlers.SaveIt" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+  <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
+    <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
+    <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+    <bindings xmi:id="_6wlLhcgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.keybinding.m1s" keySequence="M1+S" command="_6wlLg8gZEeSyMNYR5xypkQ">
+      <tags>type:user</tags>
+    </bindings>
+    <bindings xmi:id="_6wlLiMgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.keybinding.m1a" keySequence="M1+A" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
+  </bindingTables>
+  <rootContext xmi:id="_6wlLecgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
+    <children xmi:id="_6wlLesgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
+    <children xmi:id="_6wlLe8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
+  </rootContext>
+  <descriptors xmi:id="_IoYOQFjAEe6XmIHqByGXYw" elementId="JournalViewer" label="journal Viewer" iconURI="platform:/plugin/p.d.m/icons/journalview.png" tooltip="journal Viewer" closeable="true" contributionURI="bundleclass://p.d.m/journalViewer.JournalViewerSetUp"/>
+  <descriptors xmi:id="_N4p5AFlYEe6Ys_tRQpvWyQ" elementId="SourceEditor" label="Source Editor" iconURI="platform:/plugin/p.d.m/icons/sourceEdit.png" tooltip="Source Editor" closeable="true" contributionURI="bundleclass://p.d.m/sourceEditor.SrcEditorSetUp">
+    <menus xsi:type="menu:PopupMenu" xmi:id="_iD96wFljEe6Ys_tRQpvWyQ" elementId="SourceEditor.PopupMenu" label="PopupMenu">
+      <children xsi:type="menu:DirectMenuItem" xmi:id="_xZViQFljEe6Ys_tRQpvWyQ" elementId="SourceEditor.PopupMenu.Update" label="Update " tooltip="Update" mnemonics="Update" contributionURI="bundleclass://p.d.m/sourceEditor.handler.UpdateIt"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_Mb2KUGL8Ee6KzrN7dmdcbg" elementId="insert.clause.after " label="insert clause after " command="_RZ8MQGCcEe6mFfD58ubZBg">
+        <parameters xmi:id="_UpdsAGL8Ee6KzrN7dmdcbg" elementId="SourceEditor.PopupMenu.type" name="TYPE" value="clause"/>
+        <parameters xmi:id="_aQuPcGL8Ee6KzrN7dmdcbg" elementId="SourceEditor.PopupMenu.destination" name="DESTINATION" value="after"/>
+      </children>
+    </menus>
+  </descriptors>
+  <descriptors xmi:id="_UXCxUF8BEe6_H5s8cMJvPA" elementId="SourceViewer" label="Source Viewer" iconURI="platform:/plugin/p.d.m/icons/sourceview.png" closeable="true" contributionURI="bundleclass://p.d.m/sourceViewer.SourceViewerSetUp">
+    <menus xsi:type="menu:PopupMenu" xmi:id="_DhucsGBDEe6Ld9OeUOAcvw" elementId="SourceViewer.popupmenu" label="SourceViewer popupmenu">
+      <children xsi:type="menu:DirectMenuItem" xmi:id="_GWlOUGBhEe6Ld9OeUOAcvw" elementId="Select" label="Select" tooltip="Select" mnemonics="Select " contributionURI="bundleclass://p.d.m/sourceViewer.handlers.SelectIt"/>
+      <children xsi:type="menu:MenuSeparator" xmi:id="_cOunoGFkEe64erBWpoUBlg" elementId="p.d.m.menuseparator.1"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_hoZNQGFfEe64erBWpoUBlg" elementId="SourceViewer.popupmenu.insert.clause.into" label="Insert clause into" command="_RZ8MQGCcEe6mFfD58ubZBg">
+        <parameters xmi:id="_vFtuAGFfEe64erBWpoUBlg" elementId="TYPE" name="TYPE" value="clause"/>
+        <parameters xmi:id="_0rylsGFfEe64erBWpoUBlg" elementId="DESTINATION" name="DESTINATION" value="into"/>
+      </children>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_c-OHsGFgEe64erBWpoUBlg" elementId="SourceViewer.popupmenu.insert.clause.after" label="Insert clause after" command="_RZ8MQGCcEe6mFfD58ubZBg">
+        <parameters xmi:id="_sI3s8GFgEe64erBWpoUBlg" elementId="TYPE" name="TYPE" value="clause"/>
+        <parameters xmi:id="_vS4K0GFgEe64erBWpoUBlg" elementId="DESTINATION" name="DESTINATION" value="after"/>
+      </children>
+      <children xsi:type="menu:MenuSeparator" xmi:id="_Yt1TwGFkEe64erBWpoUBlg" elementId="p.d.m.menuseparator.0"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_8oz_QGFiEe64erBWpoUBlg" elementId="SourceViewer.popupmenu.insert.clause.condtional.into" label="Insert clause condtional into" command="_RZ8MQGCcEe6mFfD58ubZBg">
+        <parameters xmi:id="_fmuToGFjEe64erBWpoUBlg" elementId="TYPE" name="TYPE" value="clauseConditional"/>
+        <parameters xmi:id="_qKt20GFjEe64erBWpoUBlg" elementId="DESTINATION" name="DESTINATION" value="into"/>
+      </children>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_X9mmIGFjEe64erBWpoUBlg" elementId="SourceViewer.popupmenu.insert.clause.condtional.after" label="Insert clause condtional after" command="_RZ8MQGCcEe6mFfD58ubZBg">
+        <parameters xmi:id="_nLr54GFjEe64erBWpoUBlg" elementId="TYPE" name="TYPE" value="clauseConditional"/>
+        <parameters xmi:id="_uBc30GFjEe64erBWpoUBlg" elementId="DESTINATION" name="DESTINATION" value="after"/>
+      </children>
+      <children xsi:type="menu:MenuSeparator" xmi:id="_fJtLAGFkEe64erBWpoUBlg" elementId="p.d.m.menuseparator.2"/>
+      <children xsi:type="menu:DirectMenuItem" xmi:id="_MOmtQGBDEe6Ld9OeUOAcvw" elementId="Delete" label="Delete" tooltip="Delete" mnemonics="Delete" contributionURI="bundleclass://p.d.m/sourceViewer.handlers.DeleteIt"/>
+      <children xsi:type="menu:DirectMenuItem" xmi:id="_3J0I8GXhEe68T4EAJnX4Dg" elementId="TransType" label="TransType" contributionURI="bundleclass://p.d.m/sourceViewer.handlers.TransType"/>
+    </menus>
+  </descriptors>
+  <commands xmi:id="_RZ8MQGCcEe6mFfD58ubZBg" elementId="insertCommand" commandName="insertCommand" description="insert clause (into, after or before)">
+    <parameters xmi:id="_AXA2sGFgEe64erBWpoUBlg" elementId="TYPE" name="TYPE" optional="false"/>
+    <parameters xmi:id="_XAygAGCcEe6mFfD58ubZBg" elementId="DESTINATION" name="DESTINATION" optional="false"/>
+    <parameters xmi:id="_hFf2QGL5Ee6KzrN7dmdcbg" elementId="RANGES" name="RANGES"/>
+    <parameters xmi:id="_bWkNEGU0Ee69prEKdQGTnA" elementId="BLOCKBOUNDS" name="BLOCKBOUNDS"/>
+  </commands>
+  <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand"/>
+  <commands xmi:id="_Hue9MBkXEe6nzP-BvskRDQ" elementId="org.eclipse.ui.file.close" commandName="closeCommand"/>
+  <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
+  <commands xmi:id="_6wlLhsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <commands xmi:id="_6wlLfMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
+  <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_6wlLdcgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_6wlLdsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
+  <addons xmi:id="_6wlLd8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_6wlLeMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+</application:Application>
