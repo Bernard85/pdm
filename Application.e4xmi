@@ -67,12 +67,12 @@
         <parameters xmi:id="_vS4K0GFgEe64erBWpoUBlg" elementId="DESTINATION" name="DESTINATION" value="after"/>
       </children>
       <children xsi:type="menu:MenuSeparator" xmi:id="_Yt1TwGFkEe64erBWpoUBlg" elementId="p.d.m.menuseparator.0"/>
-      <children xsi:type="menu:HandledMenuItem" xmi:id="_8oz_QGFiEe64erBWpoUBlg" elementId="SourceViewer.popupmenu.insert.clause.condtional.into" label="Insert clause condtional into" command="_RZ8MQGCcEe6mFfD58ubZBg">
-        <parameters xmi:id="_fmuToGFjEe64erBWpoUBlg" elementId="TYPE" name="TYPE" value="clauseConditional"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_8oz_QGFiEe64erBWpoUBlg" elementId="SourceViewer.popupmenu.insert.expandable.into" label="Insert expandable into" command="_RZ8MQGCcEe6mFfD58ubZBg">
+        <parameters xmi:id="_fmuToGFjEe64erBWpoUBlg" elementId="TYPE" name="TYPE" value="expandable"/>
         <parameters xmi:id="_qKt20GFjEe64erBWpoUBlg" elementId="DESTINATION" name="DESTINATION" value="into"/>
       </children>
-      <children xsi:type="menu:HandledMenuItem" xmi:id="_X9mmIGFjEe64erBWpoUBlg" elementId="SourceViewer.popupmenu.insert.clause.condtional.after" label="Insert clause condtional after" command="_RZ8MQGCcEe6mFfD58ubZBg">
-        <parameters xmi:id="_nLr54GFjEe64erBWpoUBlg" elementId="TYPE" name="TYPE" value="clauseConditional"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_X9mmIGFjEe64erBWpoUBlg" elementId="SourceViewer.popupmenu.insert.expandable.after" label="Insert expandable after" command="_RZ8MQGCcEe6mFfD58ubZBg">
+        <parameters xmi:id="_nLr54GFjEe64erBWpoUBlg" elementId="TYPE" name="TYPE" value="expandable"/>
         <parameters xmi:id="_uBc30GFjEe64erBWpoUBlg" elementId="DESTINATION" name="DESTINATION" value="after"/>
       </children>
       <children xsi:type="menu:MenuSeparator" xmi:id="_fJtLAGFkEe64erBWpoUBlg" elementId="p.d.m.menuseparator.2"/>

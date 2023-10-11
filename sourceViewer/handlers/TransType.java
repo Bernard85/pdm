@@ -16,7 +16,7 @@ import org.w3c.dom.Element;
 import sourceEditor.SourceViewMap;
 import sourceViewer.AClause;
 import sourceViewer.Clause;
-import sourceViewer.ClauseConditional;
+import sourceViewer.Expandable;
 
 public class TransType {
 
@@ -55,7 +55,7 @@ public class TransType {
 		Composite cParent = cOld.getParent();
 		
 		if (eNew.getNodeName()==AClause.CLAUSE)	new Clause(cParent,eNew);
-		else if (eNew.getNodeName()==AClause.BRACKET)	new ClauseConditional(cParent,eNew);
+		else if (eNew.getNodeName()==AClause.BRACKET)	new Expandable(cParent,eNew);
 		
 		eParent.removeChild(eOld);
 		cOld.setVisible(false);

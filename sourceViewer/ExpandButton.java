@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Listener;
 public class ExpandButton extends Canvas {
 	private Image collapsed, expanded, status;
 	private Cursor handCursor;
-	public ExpandButton(ClauseConditional parent) {
+	public ExpandButton(Expandable parent) {
 		super(parent, SWT.NONE);
 		expanded = getAndDisposeImage("/icons/expanded.png");
 		collapsed = getAndDisposeImage("/icons/collapsed.png");

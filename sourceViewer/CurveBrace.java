@@ -27,12 +27,12 @@ public class CurveBrace extends Sash {
 	static final float  b = radMax - a * max;
 
 	static final int lineWidth=2;
-	private ClauseConditional parent;
+	private Expandable parent;
 	private final Color curveBraceColor;
 	private Image collapsed, expanded, status;
 	private Cursor defaultCursor, handCursor;	
 
-	public CurveBrace   (ClauseConditional parent) {
+	public CurveBrace   (Expandable parent) {
 		super(parent, SWT.VERTICAL|SWT.SMOOTH|SWT.DOUBLE_BUFFERED);
 		this.parent=parent;
 		curveBraceColor= getAndDisposeColor(0, 0, 0);

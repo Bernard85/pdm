@@ -14,7 +14,7 @@ import org.w3c.dom.Node;
 import sourceEditor.SourceViewMap;
 import sourceViewer.AClause;
 import sourceViewer.Clause;
-import sourceViewer.ClauseConditional;
+import sourceViewer.Expandable;
 
 public class Insert {
 
@@ -38,7 +38,7 @@ public class Insert {
 			newElement.setAttribute("height", "64");
 			newElement.setAttribute("width", "400");
 		}
-		else if (type.equals("clauseConditional")) {
+		else if (type.equals("expandable")) {
 			newElement = dView.createElement("bracket");
 			newElement.setAttribute("heightcond", "30");
 			newElement.setAttribute("height", "80");
@@ -52,14 +52,14 @@ public class Insert {
 		}
 		else if (destination.equals("into")) {
 			eClicked.insertBefore(newElement, eClicked.getFirstChild());
-			cParent = ((ClauseConditional)eClicked.getUserData(AClause.ACLAUSE)).getClauses().getClauses2();
+			cParent = ((Expandable)eClicked.getUserData(AClause.ACLAUSE)).getClauses().getClauses2();
 			}
 
 		/* */if (type.equals("clause"))	{
 			new Clause(cParent, newElement);
 		}
-		else if (type.equals("clauseConditional")) 	{
-			new ClauseConditional(cParent, newElement);
+		else if (type.equals("expandable")) 	{
+			new Expandable(cParent, newElement);
 		}
 		cParent.layout();
 	}

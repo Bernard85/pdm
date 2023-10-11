@@ -2,12 +2,14 @@ package journalViewer;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.commons.jexl3.JexlContext;
 import org.apache.commons.jexl3.MapContext;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -28,7 +30,7 @@ class JournalViewerSetUp{
 	JournalViewer journalViewer;
 	@Inject EPartService ePartService;
 	@Inject MDirtyable dirty;
-	@PostConstruct public void postConstruct (Composite parent,MPart mPart)   {
+	@PostConstruct public void postConstruct (Composite parent,MPart mPart, @Named(IServiceConstants.ACTIVE_SELECTION) Element eStudy)   {
 		
 		parent.setLayout(new FormLayout());
 		
@@ -54,9 +56,7 @@ class JournalViewerSetUp{
 
 		journalViewer.setLayoutData(fd);
 		
-		Element element = (Element) mPart.getTransientData().get("ELEMENT");
-		
-		FILE_NAME=element.getAttribute("arg1");
+		FILE_NAME=eStudy.getAttribute("arg1");
 		
 	    long start = System.currentTimeMillis();
 	    
