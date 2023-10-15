@@ -22,7 +22,7 @@ public class UpdateIt {
 	@Inject EPartService ePartService;
 	
 	@Execute public void execute(@Named(IServiceConstants.ACTIVE_PART) MPart part1) throws Throwable {
-		SourceViewMap sourceViewMap = (SourceViewMap) part1.getTransientData().get(SourceViewMap.SOURCE_VIEW_MAP);
+		SourceViewMap sourceViewMap =SourceViewMap.getSourceViewMap(part1); 
 		String sRanges = (String) iEclipseContext.get(AClause.RANGES);
 		String sBlock = (String) iEclipseContext.get(AClause.BLOCK);
 		sourceViewMap.modifierNotifier.setDirty(true);

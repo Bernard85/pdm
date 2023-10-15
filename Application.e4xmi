@@ -5,7 +5,7 @@
     <tags>shellMaximized</tags>
     <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.partsashcontainer.sample" horizontal="true">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="projectStack" containerData="15">
-        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.part.sample" contributionURI="bundleclass://p.d.m/studies.Studies" label="Study Explorer" iconURI="platform:/plugin/p.d.m/icons/project_explorer.png">
+        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="pdm.eclipse.workbench.part.sample" contributionURI="bundleclass://p.d.m/studies.StudiesSetUp" label="Study Explorer" iconURI="platform:/plugin/p.d.m/icons/project_explorer.png">
           <handlers xmi:id="_6oIAABjLEe64DKyAf1dAhA" elementId="p.d.m.handler.open" contributionURI="bundleclass://p.d.m/studies.handlers.OpenIt" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
           <handlers xmi:id="_ld7BkBkXEe6nzP-BvskRDQ" elementId="p.d.m.handler.close" contributionURI="bundleclass://p.d.m/studies.handlers.CloseIt" command="_Hue9MBkXEe6nzP-BvskRDQ"/>
           <menus xsi:type="menu:PopupMenu" xmi:id="_WnzMYBjLEe64DKyAf1dAhA" elementId="p.d.m.studiesmenu">
@@ -45,7 +45,7 @@
     <children xmi:id="_6wlLe8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
   </rootContext>
   <descriptors xmi:id="_IoYOQFjAEe6XmIHqByGXYw" elementId="JournalViewer" label="journal Viewer" iconURI="platform:/plugin/p.d.m/icons/journalview.png" tooltip="journal Viewer" closeable="true" contributionURI="bundleclass://p.d.m/journalViewer.JournalViewerSetUp"/>
-  <descriptors xmi:id="_N4p5AFlYEe6Ys_tRQpvWyQ" elementId="SourceEditor" label="Source Editor" iconURI="platform:/plugin/p.d.m/icons/sourceEdit.png" tooltip="Source Editor" closeable="true" contributionURI="bundleclass://p.d.m/sourceEditor.SrcEditorSetUp">
+  <descriptors xmi:id="_N4p5AFlYEe6Ys_tRQpvWyQ" elementId="SourceEditor" label="Source Editor" iconURI="platform:/plugin/p.d.m/icons/sourceEdit.png" tooltip="Source Editor" closeable="true" contributionURI="bundleclass://p.d.m/sourceEditor.SourceEditorSetUp">
     <menus xsi:type="menu:PopupMenu" xmi:id="_iD96wFljEe6Ys_tRQpvWyQ" elementId="SourceEditor.PopupMenu" label="PopupMenu">
       <children xsi:type="menu:DirectMenuItem" xmi:id="_xZViQFljEe6Ys_tRQpvWyQ" elementId="SourceEditor.PopupMenu.Update" label="Update " tooltip="Update" mnemonics="Update" contributionURI="bundleclass://p.d.m/sourceEditor.handler.UpdateIt"/>
       <children xsi:type="menu:HandledMenuItem" xmi:id="_Mb2KUGL8Ee6KzrN7dmdcbg" elementId="insert.clause.after " label="insert clause after " command="_RZ8MQGCcEe6mFfD58ubZBg">

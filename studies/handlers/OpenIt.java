@@ -20,7 +20,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import core.HUB;
-import studies.Studies;
+import studies.StudiesSetUp;
 
 public class OpenIt {
 	@Inject MApplication mApplication;
@@ -46,8 +46,8 @@ public class OpenIt {
 				eAlias.setUserData(HUB.LEFT_ALIAS, element, null);
 				element.setAttribute("open", "true");
 				eAlias.setAttribute("open", "true");
-				Studies.refreshIt();
-				Studies.tStudies.expandToLevel(eAlias, TreeViewer.ALL_LEVELS);
+				StudiesSetUp.refreshIt();
+				StudiesSetUp.tStudies.expandToLevel(eAlias, TreeViewer.ALL_LEVELS);
 			}
 			catch(Exception e) {
 				System.out.println("failure when open\""+element.getAttribute(HUB.XRL)+"\"");
@@ -75,7 +75,7 @@ public class OpenIt {
 
 		if (element.hasAttribute("open")&&element.getAttribute("open")!="true") element.setAttribute("open", "true");
 
-		Studies.refreshIt();
+		StudiesSetUp.refreshIt();
 	}
 
 	private String[] getPartDescriptor(Element element) {

@@ -13,6 +13,7 @@ import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import sourceEditor.SourceViewMap;
 import sourceViewer.AClause;
 
 public class SelectIt {
@@ -22,22 +23,25 @@ public class SelectIt {
 	@Inject EModelService eModelService;
 	@Inject EPartService ePartService;
 
-
-	@Execute public void execute(@Named(IServiceConstants.ACTIVE_PART)MPart active_part
+	@Execute public void execute(@Named(IServiceConstants.ACTIVE_PART)MPart part2
 			) throws Throwable {
-		Document document = (Document) active_part.getTransientData().get("DOCUMENT");
-		Element element = (Element)document.getUserData("CLICKON");
-
-		Element oldSelected = (Element) document.getUserData("SELECTED");
-
-		document.setUserData("SELECTED", element, null);
 		
-		if (oldSelected!=null) {
-			AClause aClause = (AClause) oldSelected.getUserData(AClause.ACLAUSE);
+		SourceViewMap sourceViewMap=SourceViewMap.getSourceViewMap(part2);
+		
+		selectIt(sourceViewMap);
+	}
+
+	public static void selectIt(SourceViewMap sourceViewMap) {
+		if (sourceViewMap.eSelected!=null) {
+			AClause aClause = AClause.getAClause(sourceViewMap.eSelected);
+			sourceViewMap.eSelected=null;
 			aClause.redraw();
 		}
-		
-		AClause aClause = (AClause) element.getUserData(AClause.ACLAUSE);
+
+		sourceViewMap.eSelected=sourceViewMap.eNewSelected;
+		AClause aClause = AClause.getAClause(sourceViewMap.eSelected);
 		aClause.redraw();
+
+		sourceViewMap.styledText.redraw();		
 	}
 }

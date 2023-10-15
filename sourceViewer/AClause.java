@@ -1,7 +1,6 @@
 package sourceViewer;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.w3c.dom.Element;
 
@@ -45,8 +44,9 @@ public abstract class AClause extends Composite {
 		else 
 			element.setAttribute("tag", "true");
 	}
+	
 	public boolean isSelected() {
-		return element==element.getOwnerDocument().getUserData("SELECTED");
+		return element==SourceViewMap.getSourceViewMap(element).eSelected;
 	}
 	/**
 	 * @return the width
@@ -88,6 +88,7 @@ public abstract class AClause extends Composite {
 		element.getOwnerDocument().setUserData("SELECTED", element, null);
 		SourceViewMap sourceViewMap = (SourceViewMap) element.getOwnerDocument().getUserData(SourceViewMap.SOURCE_VIEW_MAP);
 		sourceViewMap.eSelected=element;
+		sourceViewMap.styledText.redraw();
 		redraw();
 	}
 
@@ -102,7 +103,7 @@ public abstract class AClause extends Composite {
 		clauseText.setText(sClauseText);
 	}
 	public int[] StringToInts(String ids) {
-		  if (ids.isBlank()) return new int[0]; 	
+		  if (ids.isEmpty()) return new int[0]; 	
 	      String[] temps = ids.split(",");
 	      int[] ia = new int[temps.length];
 	      for (int i = 0; i < temps.length; i++) {
@@ -110,5 +111,7 @@ public abstract class AClause extends Composite {
 	        }
 	       return ia;
 	   } 
-
+	public static AClause getAClause(Element element) {
+		return (AClause) element.getUserData(ACLAUSE);
+	}
 }

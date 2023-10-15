@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -18,9 +17,7 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.e4.ui.model.application.ui.basic.MPartStack;
 import org.eclipse.e4.ui.services.EMenuService;
-import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -30,6 +27,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import sourceEditor.SourceBlock;
 import sourceEditor.SourceViewMap;
 
 public class SourceViewerSetUp {
@@ -43,12 +41,11 @@ public class SourceViewerSetUp {
 	String xmlID;
 	@PostConstruct public void postConstruct(MPart part2, Composite parent) {
 		// To retrieve the associated SourceViewMap
-		MPartStack detailStack1= (MPartStack) 	eModelService.find("detailStack1", mApplication);
 		MPart part1	= (MPart) eModelService.find(part2.getElementId(), mApplication);
-		SourceViewMap sourceViewMap = (SourceViewMap) part1.getTransientData().get(SourceViewMap.SOURCE_VIEW_MAP);
-
-		part2.getTransientData().put(SourceViewMap.SOURCE_VIEW_MAP,sourceViewMap);
-
+		SourceViewMap sourceViewMap = SourceViewMap.getSourceViewMap(part1);
+		sourceViewMap.referencedBy(part2);
+		
+		
 		int index = sourceViewMap.fileName.lastIndexOf(".");
 		xmlID=sourceViewMap.fileName.substring(0, index)+".xml";
 
@@ -58,8 +55,7 @@ public class SourceViewerSetUp {
 			System.out.println(xmlID+" loading failure");
 			return;
 		}
-		dView.setUserData(SourceViewMap.SOURCE_VIEW_MAP, sourceViewMap, null);
-		sourceViewMap.dView=dView;
+		sourceViewMap.referencedBy(dView);
 
 		Element eView = dView.getDocumentElement();
 
@@ -74,6 +70,8 @@ public class SourceViewerSetUp {
 
 		Clauses clauses=new Clauses(parent,eView);
 
+		sourceViewMap.loadSourceBlocks();
+		
 		FormData fd=new FormData();
 		fd.left=new FormAttachment(0);		
 		fd.top=new FormAttachment(0);
@@ -83,6 +81,8 @@ public class SourceViewerSetUp {
 		clauses.layout();
 
 	}
+
+
 	@Persist void saveIt() {
 		try {
 			killCR(dView.getDocumentElement(), 0);

@@ -8,7 +8,7 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.w3c.dom.Element;
 
-import studies.Studies;
+import studies.StudiesSetUp;
 
 
 public class CloseIt {
@@ -22,6 +22,6 @@ public class CloseIt {
 		@Execute public void execute(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Element element) throws Throwable{
 			if (element.hasAttribute("open")) element.setAttribute("open", "false");	
 			
-			Studies.refreshIt();
+			StudiesSetUp.refreshIt();
 		}	
 }

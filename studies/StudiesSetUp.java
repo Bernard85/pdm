@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.EMenuService;
@@ -33,7 +34,7 @@ import core.HUB;
 
 
 
-public class Studies {
+public class StudiesSetUp {
 
 	Document dStudies;
 	public static TreeViewer tStudies; 
@@ -42,9 +43,23 @@ public class Studies {
 	@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Element activeSelection;
 
 	@Inject public void Studies(Composite parent) throws Throwable{
+
+		String[] args = Platform.getCommandLineArgs(); 
+		String filePath=null;
+		for (int i=0;i<args.length;i++) {
+			if (args[i].equals("-path")) {
+				filePath=args[i+1];
+				break;}  
+		}
+		File file=null;
+		try {
+			file = new File(filePath);
+		} catch (Throwable e){
+			System.out.println("Open studies explorer failure");
+		}
+
 		parent.setLayout(new FillLayout());
 
-		File file = new File("C:\\studies\\studies.xml");
 
 		dStudies = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
 
