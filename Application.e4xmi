@@ -48,9 +48,23 @@
   <descriptors xmi:id="_N4p5AFlYEe6Ys_tRQpvWyQ" elementId="SourceEditor" label="Source Editor" iconURI="platform:/plugin/p.d.m/icons/sourceEdit.png" tooltip="Source Editor" closeable="true" contributionURI="bundleclass://p.d.m/sourceEditor.SourceEditorSetUp">
     <menus xsi:type="menu:PopupMenu" xmi:id="_iD96wFljEe6Ys_tRQpvWyQ" elementId="SourceEditor.PopupMenu" label="PopupMenu">
       <children xsi:type="menu:DirectMenuItem" xmi:id="_xZViQFljEe6Ys_tRQpvWyQ" elementId="SourceEditor.PopupMenu.Update" label="Update " tooltip="Update" mnemonics="Update" contributionURI="bundleclass://p.d.m/sourceEditor.handler.UpdateIt"/>
+      <children xsi:type="menu:MenuSeparator" xmi:id="_2blJkHQ9Ee69i7n8ep479A" elementId="p.d.m.menuseparator.3"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_5r2ngHQ9Ee69i7n8ep479A" elementId="insert.clause.into" label="Insert clause into" command="_RZ8MQGCcEe6mFfD58ubZBg">
+        <parameters xmi:id="_NKvpIHQ-Ee69i7n8ep479A" elementId="SourceEditor.PopupMenu.type" name="TYPE" value="clause"/>
+        <parameters xmi:id="_UMaVEHQ-Ee69i7n8ep479A" elementId="SourceEditor.PopupMenu.destination" name="DESTINATION" value="into"/>
+      </children>
       <children xsi:type="menu:HandledMenuItem" xmi:id="_Mb2KUGL8Ee6KzrN7dmdcbg" elementId="insert.clause.after " label="insert clause after " command="_RZ8MQGCcEe6mFfD58ubZBg">
         <parameters xmi:id="_UpdsAGL8Ee6KzrN7dmdcbg" elementId="SourceEditor.PopupMenu.type" name="TYPE" value="clause"/>
         <parameters xmi:id="_aQuPcGL8Ee6KzrN7dmdcbg" elementId="SourceEditor.PopupMenu.destination" name="DESTINATION" value="after"/>
+      </children>
+      <children xsi:type="menu:MenuSeparator" xmi:id="_hChE0HQ-Ee69i7n8ep479A" elementId="p.d.m.menuseparator.4"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_jkn1MHQ-Ee69i7n8ep479A" elementId="insert.expandable.into" label="Insert expandable into" command="_RZ8MQGCcEe6mFfD58ubZBg">
+        <parameters xmi:id="_3YH04HQ-Ee69i7n8ep479A" elementId="SourceEditor.PopupMenu.type" name="TYPE" value="expandable"/>
+        <parameters xmi:id="_8ne1sHQ-Ee69i7n8ep479A" elementId="SourceEditor.PopupMenu.destination" name="DESTINATION" value="into"/>
+      </children>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_m1eh8HQ-Ee69i7n8ep479A" elementId="Insert.expandable.after" label="Insert expandable after" command="_RZ8MQGCcEe6mFfD58ubZBg">
+        <parameters xmi:id="_HMa0EHQ_Ee69i7n8ep479A" elementId="SourceEditor.PopupMenu.type" name="TYPE" value="expandable"/>
+        <parameters xmi:id="_aVrj8HQ_Ee69i7n8ep479A" elementId="SourceEditor.PopupMenu.destination" name="DESTINATION" value="after"/>
       </children>
     </menus>
   </descriptors>

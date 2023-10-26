@@ -93,6 +93,9 @@ public class SourceEditorSetUp {
 		styledText.addMenuDetectListener(new MenuDetectListener() {
 			@Override
 			public void menuDetected(MenuDetectEvent e) {
+				
+				sourceViewMap.eClicked=sourceViewMap.eSelected;
+				
 				int[] ranges=styledText.getSelectionRanges();
 				String sRanges = "";
 				for (int i=0;i<ranges.length;i++) {
