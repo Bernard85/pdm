@@ -31,16 +31,16 @@ public class TransType {
 		SourceViewMap sourceViewMap = (SourceViewMap) part2.getTransientData().get(SourceViewMap.SOURCE_VIEW_MAP);
 		sourceViewMap.modifierNotifier.setDirty(true);
 		
-		Element eOld = sourceViewMap.eClicked;
+		Element eOld = sourceViewMap.eChosen;
 		Element eNew=null;
 		
 		if (eOld.getNodeName()==AClause.CLAUSE) {
-			eNew = sourceViewMap.dView.createElement(AClause.BRACKET);
+			eNew = sourceViewMap.dView.createElement(AClause.EXPANDABLE);
 			eNew.setAttribute(AClause.HEIGHTCOND,"30");
 			eNew.setAttribute(AClause.EXPANDED,"true");
 		}
-		else if	(eOld.getNodeName()==AClause.BRACKET) {
-			eNew = sourceViewMap.dView.createElement(AClause.CLAUSE);
+		else if	(eOld.getNodeName()==AClause.EXPANDABLE) {
+			eNew = sourceViewMap.dView.createElement(AClause.EXPANDABLE);
 		}
 		eNew.setAttribute(AClause.NO, eOld.getAttribute(AClause.NO));
 		eNew.setAttribute(AClause.BLOCK, eOld.getAttribute(AClause.BLOCK));
@@ -55,11 +55,11 @@ public class TransType {
 		Composite cParent = cOld.getParent();
 		
 		if (eNew.getNodeName()==AClause.CLAUSE)	new Clause(cParent,eNew);
-		else if (eNew.getNodeName()==AClause.BRACKET)	new Expandable(cParent,eNew);
+		else if (eNew.getNodeName()==AClause.EXPANDABLE)	new Expandable(cParent,eNew);
 		
 		eParent.removeChild(eOld);
 		cOld.setVisible(false);
 		cParent.layout();
-		sourceViewMap.eClicked=eNew;
+		sourceViewMap.eChosen=eNew;
 	}
 }

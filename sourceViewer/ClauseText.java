@@ -42,12 +42,9 @@ public class ClauseText extends StyledText {
 				AClause aClause = (AClause) c.getParent();
 				Element element = aClause.element;
 				SourceViewMap sourceViewMap= (SourceViewMap) element.getOwnerDocument().getUserData(SourceViewMap.SOURCE_VIEW_MAP);
-				sourceViewMap.eClicked=element;
+				sourceViewMap.eChosen=element;
 			}
 		});
-	
-
-
 
 		//		addVerifyListener(e -> {
 		//			if (userInputEnabled)	{

@@ -31,14 +31,14 @@ public class DeleteIt {
 		SourceViewMap sourceViewMap = (SourceViewMap) part2.getTransientData().get(SourceViewMap.SOURCE_VIEW_MAP);
 		sourceViewMap.modifierNotifier.setDirty(true);
 		
-		Element eClicked = sourceViewMap.eClicked;
+		Element eChosen = sourceViewMap.eChosen;
 		
-		AClause aClause=(AClause)eClicked.getUserData(AClause.ACLAUSE); 
+		AClause aClause=(AClause)eChosen.getUserData(AClause.ACLAUSE); 
 		
 		Composite cParent = aClause.getParent(); 
-		Element papa=(Element) eClicked.getParentNode();
+		Element papa=(Element) eChosen.getParentNode();
 		
-		papa.removeChild(eClicked);
+		papa.removeChild(eChosen);
 		aClause.setVisible(false);
 		
 		cParent.layout();

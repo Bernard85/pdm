@@ -16,7 +16,7 @@ public class Clauses2 extends Composite {
 		for (int n=0;n<nl.getLength();n++) {
 			Node wN = nl.item(n);
 			if (wN.getNodeType() == Node.ELEMENT_NODE) {
-				/* */if (wN.getNodeName()=="bracket") 	new Expandable(this, (Element) wN);
+				/* */if (wN.getNodeName()==AClause.EXPANDABLE) 	new Expandable(this, (Element) wN);
 				else if (wN.getNodeName()=="clause") 	new Clause(this, (Element) wN);
 			}
 		}

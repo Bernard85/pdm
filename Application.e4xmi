@@ -47,7 +47,7 @@
   <descriptors xmi:id="_IoYOQFjAEe6XmIHqByGXYw" elementId="JournalViewer" label="journal Viewer" iconURI="platform:/plugin/p.d.m/icons/journalview.png" tooltip="journal Viewer" closeable="true" contributionURI="bundleclass://p.d.m/journalViewer.JournalViewerSetUp"/>
   <descriptors xmi:id="_N4p5AFlYEe6Ys_tRQpvWyQ" elementId="SourceEditor" label="Source Editor" iconURI="platform:/plugin/p.d.m/icons/sourceEdit.png" tooltip="Source Editor" closeable="true" contributionURI="bundleclass://p.d.m/sourceEditor.SourceEditorSetUp">
     <menus xsi:type="menu:PopupMenu" xmi:id="_iD96wFljEe6Ys_tRQpvWyQ" elementId="SourceEditor.PopupMenu" label="PopupMenu">
-      <children xsi:type="menu:DirectMenuItem" xmi:id="_xZViQFljEe6Ys_tRQpvWyQ" elementId="SourceEditor.PopupMenu.Update" label="Update " tooltip="Update" mnemonics="Update" contributionURI="bundleclass://p.d.m/sourceEditor.handler.UpdateIt"/>
+      <children xsi:type="menu:DirectMenuItem" xmi:id="_xZViQFljEe6Ys_tRQpvWyQ" elementId="SourceEditor.PopupMenu.Update" label="Update " tooltip="Update" mnemonics="Update" contributionURI="bundleclass://p.d.m/sourceEditor.handlers.UpdateIt"/>
       <children xsi:type="menu:MenuSeparator" xmi:id="_2blJkHQ9Ee69i7n8ep479A" elementId="p.d.m.menuseparator.3"/>
       <children xsi:type="menu:HandledMenuItem" xmi:id="_5r2ngHQ9Ee69i7n8ep479A" elementId="insert.clause.into" label="Insert clause into" command="_RZ8MQGCcEe6mFfD58ubZBg">
         <parameters xmi:id="_NKvpIHQ-Ee69i7n8ep479A" elementId="SourceEditor.PopupMenu.type" name="TYPE" value="clause"/>

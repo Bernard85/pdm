@@ -8,7 +8,7 @@ import sourceEditor.SourceViewMap;
 
 public abstract class AClause extends Composite {
 	public static final String CLAUSE = "clause";
-	public static final String BRACKET = "bracket";
+	public static final String EXPANDABLE = "expandable";
 	public static final String EXPANDED = "expanded";
 	public static final String RANGES = "ranges";
 	public static final String BLOCK = "block";
@@ -93,6 +93,7 @@ public abstract class AClause extends Composite {
 	}
 
 	public void update() {
+		modifierNotifier.setDirty(true);
 		SourceViewMap sourceViewMap=(SourceViewMap)element.getOwnerDocument().getUserData(SourceViewMap.SOURCE_VIEW_MAP);
 		String sClauseText="";
 		int[]ranges=StringToInts(element.getAttribute(RANGES));

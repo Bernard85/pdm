@@ -16,7 +16,7 @@ public class SourceViewMap {
 	public static final String SOURCE_VIEW_MAP = "SOURCE_VIEW_MAP";
 	public Element eStudy;
 	public Document dView;
-	public Element eSelected, eNewSelected, eClicked;
+	public Element eSelected, eNewSelected, eChosen;
 	public String buffer;
 	public String fileName;
 	public IModifierNotifier modifierNotifier;

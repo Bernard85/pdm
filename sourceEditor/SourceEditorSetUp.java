@@ -94,7 +94,7 @@ public class SourceEditorSetUp {
 			@Override
 			public void menuDetected(MenuDetectEvent e) {
 				
-				sourceViewMap.eClicked=sourceViewMap.eSelected;
+				sourceViewMap.eChosen=sourceViewMap.eSelected;
 				
 				int[] ranges=styledText.getSelectionRanges();
 				String sRanges = "";
@@ -102,11 +102,12 @@ public class SourceEditorSetUp {
 					if (sRanges!="") sRanges+=",";
 					sRanges+=String.valueOf(ranges[i]);
 				}
-				iEclipseContext.set(AClause.RANGES, sRanges);
+				iEclipseContext.set(AClause.RANGES, ranges);
 
 				Rectangle block = styledText.getBlockSelectionBounds();
 				String sBlock = block.x+","+block.y+","+block.width+","+block.height;
-				iEclipseContext.set(AClause.BLOCK, sBlock);
+				
+				iEclipseContext.set(AClause.BLOCK, block);
 			}
 		});
 
