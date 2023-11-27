@@ -1,7 +1,6 @@
 package sourceViewer;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -15,44 +14,31 @@ public class Clause extends AClause {
 	public Clause(Composite parent, Element element) {
 		super(parent, element);
 		this.parent=parent; 
-
 		setLayout(new FormLayout());
 		//
-		h1 = new ClauseSash(this,SWT.HORIZONTAL);
-		FormData fd = new FormData();
-		fd.left= new FormAttachment(0);
-		fd.right=new FormAttachment(100,-4);
-		fd.bottom=new FormAttachment(100,-4);
-		h1.setLayoutData(fd);
+		FormData  fd = new FormData();
+		fd.top=new FormAttachment(0);
+		fd.left=new FormAttachment(0);
+		fd.right=new FormAttachment(100);
+		fd.bottom=new FormAttachment(100);
+		clauseText.setLayoutData(fd);
 		//
+		h1= new ClauseSash(parent,SWT.HORIZONTAL);
 		h1.addListener(SWT.Selection, e -> {
 			int delta =e.y-h1.getLocation().y;
-			setHeight(delta+getHeight());
+			setHeight(getHeight()+delta);
 			parent.layout();
 			clauseText.redraw();
 		});
-		
 		//
-		v1 = new ClauseSash(this, SWT.VERTICAL);
-		fd = new FormData();
-		fd.top=new FormAttachment(0);
-		fd.right=new FormAttachment(100,-4);
-		fd.bottom=new FormAttachment(100, -4);
-		v1.setLayoutData(fd);
+		v1 = new ClauseSash(parent, SWT.VERTICAL);
 		v1.addListener(SWT.Selection, e -> {
 			int delta =e.x-v1.getLocation().x;
-			v1.setLocation(v1.getLocation().x+delta, SWT.DEFAULT);
 			setWidth(getWidth()+delta);
 			parent.layout();
 			clauseText.redraw();
 		});
 		
-		fd = new FormData();
-		fd.top=new FormAttachment(0);
-		fd.left=new FormAttachment(0);
-		fd.right=new FormAttachment(v1);
-		fd.bottom=new FormAttachment(h1,-2,SWT.TOP);
-		clauseText.setLayoutData(fd);
 	}
 	
 	@Override

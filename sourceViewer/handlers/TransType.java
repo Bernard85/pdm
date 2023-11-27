@@ -40,7 +40,7 @@ public class TransType {
 			eNew.setAttribute(AClause.EXPANDED,"true");
 		}
 		else if	(eOld.getNodeName()==AClause.EXPANDABLE) {
-			eNew = sourceViewMap.dView.createElement(AClause.EXPANDABLE);
+			eNew = sourceViewMap.dView.createElement(AClause.CLAUSE);
 		}
 		eNew.setAttribute(AClause.NO, eOld.getAttribute(AClause.NO));
 		eNew.setAttribute(AClause.BLOCK, eOld.getAttribute(AClause.BLOCK));

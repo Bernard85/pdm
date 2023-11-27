@@ -11,25 +11,25 @@ public class ClauseSash extends Sash {
 
 	public ClauseSash(Composite parent, int style) {
 		super(parent, style);
-
-		addMouseTrackListener(new MouseTrackListener() {
-
-			@Override
-			public void mouseEnter(MouseEvent e) {
-				setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_LIGHT_SHADOW));
-			}
-
-			@Override
-			public void mouseExit(MouseEvent e) {
-				setBackground(null);
-			}
-
-			@Override
-			public void mouseHover(MouseEvent e) {
-				setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_LIGHT_SHADOW));
-			}
-
-		});
+		setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_LIGHT_SHADOW));
+//		addMouseTrackListener(new MouseTrackListener() {
+//
+//			@Override
+//			public void mouseEnter(MouseEvent e) {
+//				setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_LIGHT_SHADOW));
+//			}
+//
+//			@Override
+//			public void mouseExit(MouseEvent e) {
+//				setBackground(null);
+//			}
+//
+//			@Override
+//			public void mouseHover(MouseEvent e) {
+//				setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_LIGHT_SHADOW));
+//			}
+//
+//		});
 	}
 
 	@Override

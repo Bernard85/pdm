@@ -47,7 +47,6 @@ public class Clauses extends Composite {
 		fd.right=new FormAttachment(100);
 		fd.bottom=new FormAttachment(100);
 		clauses2.setLayoutData(fd);
-
 	}
 	/**
 	 * @return the clauses2

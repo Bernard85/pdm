@@ -28,10 +28,7 @@ public class ExpandButton extends Canvas {
 			status=parent.isExpanded()?expanded:collapsed;
 			parent.getParent().layout();
 			redraw();
-			
 			Display.getCurrent().setCursorLocation(toDisplay(8,8));
-
-
 		});
 
 

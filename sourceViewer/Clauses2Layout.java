@@ -10,24 +10,11 @@ import org.w3c.dom.NodeList;
 
 public class Clauses2Layout extends Layout {
 	Element element;
-	public static final int V_BORDER = 10;
+	public static final int V_BORDER = 8;
 	int x, y;
 	@Override
 	protected Point computeSize(Composite composite, int wHint, int hHint, boolean flushCache) {
-		Clauses2 clauses2 = (Clauses2) composite;
-		element = clauses2.getElement();		
-		y=V_BORDER;
-		NodeList childNodes=element.getChildNodes();
-		
-		for (int n=0;n<childNodes.getLength();n++) {
-			Node node = childNodes.item(n);
-			if (node.getNodeType() != Node.ELEMENT_NODE) continue;
-			Element element2 = (Element) node;
-			AClause aClause = (AClause)element2.getUserData(AClause.ACLAUSE);
-			y+=aClause.getRealHeight();
-			y+=V_BORDER;
-		}
-		x=clauses2.getClientArea().width;
+		x=composite.getClientArea().width;
 		return new Point(x,y);
 	}
 
@@ -46,12 +33,31 @@ public class Clauses2Layout extends Layout {
 			if (node.getNodeType() != Node.ELEMENT_NODE) continue;
 			y+=(y>0)?V_BORDER:0;
 			Element element2 = (Element) node;
+			
 			AClause aClause = (AClause)element2.getUserData(AClause.ACLAUSE);
 			aClause.setBounds(0, y-slider.getSelection(), aClause.getRealWidth(), aClause.getRealHeight());
+			
+			if (element2.getNodeName().equals(AClause.CLAUSE)) {
+				Clause clause = (Clause) aClause;
+				clause.h1.setBounds(0, y-slider.getSelection()+aClause.getRealHeight(), clause.getRealWidth(), 3);
+				clause.v1.setBounds(aClause.getRealWidth(), y-slider.getSelection(), 3, clause.getRealHeight());
+			}
+			else if (element2.getNodeName().equals(AClause.EXPANDABLE)) {
+				Expandable expandable = (Expandable) aClause;
+				expandable.h1.setBounds(0, y-slider.getSelection()+aClause.getRealHeight(), expandable.getWidth(), 3);
+			}
 			y+=aClause.getRealHeight();
 		}
-		int maximum = y-clauses2.getSize().y-slider.getThumb();
-		slider.setMaximum(maximum<0?1:maximum);
-		slider.setVisible(slider.getMaximum()>1);
+		slider.setMaximum(y);
+		
+		slider.setThumb(clauses.getClientArea().height);
+		
+		slider.setVisible(y>clauses.getClientArea().height); 
+		
+		if (!slider.isVisible()) {
+			slider.setSelection(0);
+			this.layout(composite, true);
+		}
+		
 	}	
 }

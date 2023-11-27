@@ -67,16 +67,15 @@ public class CurveBrace extends Sash {
 				}
 			}
 		});
-		addListener(SWT.Selection, e -> {
-
-			int delta= e.x-getLocation().x;
-			if (delta!=0){
-				parent.setWidth(delta+parent.getWidth());
-				FormData fd = (FormData) this.getLayoutData();
-				fd.left=new FormAttachment(0,parent.getWidth());
-				parent.layout();
-			}
-		});
+//		addListener(SWT.Selection, e -> {
+//			int delta= e.x-getLocation().x;
+//			if (delta!=0){
+//				parent.setWidth(delta+parent.getWidth());
+//				FormData fd = (FormData) this.getLayoutData();
+//				fd.left=new FormAttachment(0,parent.getWidth());
+//				parent.layout();
+//			}
+//		});
 		
 		addListener(SWT.Resize, e ->{
 			redraw();

@@ -19,7 +19,6 @@ public abstract class AClause extends Composite {
 	public static final String WIDTH = "width";
 	protected Element element;
 	ClauseText clauseText;
-	
 	IModifierNotifier modifierNotifier;
 	
 	public AClause(Composite clauses2, Element element) {
